@@ -217,7 +217,7 @@ void displacement_fields(void)
 
 		      p_of_k *= -log(ampl);
 
-		      delta = fac * sqrt(p_of_k) * DplusDEBA(k, InitTime, InputTime);	/* scale back to starting redshift */
+		      delta = fac * sqrt(p_of_k) * DplusDEBA18(k, InitTime, InputTime);	/* scale back to starting redshift */
 
 #ifdef CORRECT_CIC
 		      /* do deconvolution of CIC interpolation */

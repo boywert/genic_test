@@ -37,7 +37,7 @@ FFTW_LIBS = -L/users/home/boyd/local/lib
 
 CC       =   mpicc        # sets the C-compiler (default)
 OPTIMIZE =   -O3 -Wall    # optimization and warning flags (default)
-MPICHLIB =  -lmpich
+MPICHLIB =  #-lmpich
 
 
 ifeq ($(SYSTYPE),"OpenSuse")

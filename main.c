@@ -469,8 +469,13 @@ void initialize_ffts(void)
 
   Inverse_plan = rfftw3d_mpi_create_plan(MPI_COMM_WORLD,
 					 Nmesh, Nmesh, Nmesh, FFTW_COMPLEX_TO_REAL, FFTW_ESTIMATE);
+  Inverse_plan2 = rfftw3d_mpi_create_plan(MPI_COMM_WORLD,
+					 Nmesh, Nmesh, Nmesh, FFTW_COMPLEX_TO_REAL, FFTW_ESTIMATE);
 
   rfftwnd_mpi_local_sizes(Inverse_plan, &Local_nx, &Local_x_start,
+			  &local_ny_after_transpose, &local_y_start_after_transpose, &total_size);
+
+  rfftwnd_mpi_local_sizes(Inverse_plan2, &Local_nx, &Local_x_start,
 			  &local_ny_after_transpose, &local_y_start_after_transpose, &total_size);
 
   Local_nx_table = malloc(sizeof(int) * NTask);
@@ -503,7 +508,9 @@ void initialize_ffts(void)
 
   Disp = (fftw_real *) malloc(bytes = sizeof(fftw_real) * (total_size + additional));
   Workspace = (fftw_real *) malloc(bytes += sizeof(fftw_real) * total_size);
-
+  Velq = (fftw_real *) malloc(bytes += sizeof(fftw_real) * (total_size + additional));
+  Workspace2 = (fftw_real *) malloc(bytes += sizeof(fftw_real) * total_size);
+  
   if(Disp && Workspace)
     {
       if(ThisTask == 0)
@@ -517,6 +524,7 @@ void initialize_ffts(void)
     }
 
   Cdata = (fftw_complex *) Disp;	/* transformed array */
+  Cdata2 = (fftw_complex *) Velq;	/* transformed array */
 }
 
 

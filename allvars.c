@@ -53,7 +53,7 @@ int Local_nx, Local_x_start;
 int IdStart;
 
 rfftwnd_mpi_plan Inverse_plan, Inverse_plan2;
-fftw_real *Disp, *Velq, *Workspace;
+fftw_real *Disp, *Velq, *Workspace, *Workspace2;
 fftw_complex *Cdata, *Cdata2;
 
 

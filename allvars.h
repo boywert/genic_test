@@ -103,7 +103,7 @@ extern int      Local_nx, Local_x_start;
 extern int  IdStart;
 
 extern rfftwnd_mpi_plan Inverse_plan, Inverse_plan2;
-extern fftw_real        *Disp, *Velq, *Workspace;
+extern fftw_real        *Disp, *Velq, *Workspace, *Workspace2;
 extern fftw_complex     *Cdata, *Cdata2;
 
 

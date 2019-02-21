@@ -27,12 +27,12 @@ OPTIONS =  $(OPT)
 #SYSTYPE="OPA-Cluster64-Intel"
 
 # module load mvapich2-1.2-sdr-gnu/4.1.2
-SYSTYPE="OPA-Cluster64-Gnu"
+#SYSTYPE="OPA-Cluster64-Gnu"
 
 
+FFTW_INCL = -I/users/home/boyd/local/include
+FFTW_LIBS = -L/users/home/boyd/local/lib
 
-FFTW_INCL = -I/usr/common/pdsoft/include
-FFTW_LIBS = -L/usr/common/pdsoft/lib
 
 
 CC       =   mpicc        # sets the C-compiler (default)

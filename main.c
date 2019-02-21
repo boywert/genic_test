@@ -74,7 +74,6 @@ void displacement_fields(void)
   double fac, vel_prefac;
   double kvec[3], kmag, kmag2, p_of_k;
   double delta, phase, ampl, hubble_a;
-  double Dplus
   double u, v, w;
   double f1, f2, f3, f4, f5, f6, f7, f8;
   double dis, maxdisp, max_disp_glob;

@@ -98,7 +98,7 @@ void displacement_fields(void)
   
 
   if(ThisTask == 0)
-    printf("vel_prefac= %g  hubble_a=%g fom=%g \n", vel_prefac, hubble_a, F_Omega(InitTime));
+    printf("vel_prefac= %g  Hubble = %g hubble_a=%g fom=%g \n", vel_prefac, Hubble, hubble_a, F_Omega(InitTime));
 
   fac = pow(2 * PI / Box, 1.5);
 

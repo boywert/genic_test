@@ -332,7 +332,7 @@ double DEBA18_prefac(double k, double a) {
   double a_eq = 1.0/(1+Z_eq);
   k *= (3.085678e24 / UnitLength_in_cm);
   hubble_a =
-    Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
+    HubbleParam * Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
 		  (1 - Omega - OmegaLambda - OmegaRadiation) / pow(InitTime, 2) + OmegaLambda);
   y = a/a_eq;
   ddot = log(k/kscale) - log((sqrt(1+y) + 1)/(sqrt(1+y) - 1)) + (6*y + 2)/(3*y*sqrt(1+y));

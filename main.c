@@ -93,7 +93,7 @@ void displacement_fields(void)
     Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
 		  (1 - Omega - OmegaLambda - OmegaRadiation) / pow(InitTime, 2) + OmegaLambda);
 
-  vel_prefac = DEBA18_prefac(0.0, InitTime);
+  vel_prefac = DEBA18_prefac(1.0, InitTime);
 
   
 

@@ -76,7 +76,7 @@ void displacement_fields(void)
   double delta, phase, ampl, hubble_a;
   double u, v, w;
   double f1, f2, f3, f4, f5, f6, f7, f8;
-  double dis, maxdisp, max_disp_glob;
+  double dis, vel, maxdisp, max_disp_glob;
   unsigned int *seedtable;
 
 #ifdef CORRECT_CIC

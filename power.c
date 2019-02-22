@@ -330,6 +330,7 @@ double DEBA18_prefac(double k, double a) {
   double kscale = 0.12;
   double ddot, d;
   double a_eq = 1.0/(1+Z_eq);
+  k *= (3.085678e24 / UnitLength_in_cm);
   hubble_a =
     Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
 		  (1 - Omega - OmegaLambda - OmegaRadiation) / pow(InitTime, 2) + OmegaLambda);
@@ -343,6 +344,7 @@ double DplusDEBA18(double k, double astart, double aend) {
   double d1, d2;
   double kscale = 0.12;
   double a_eq = 1./(1+Z_eq);
+  k *= (3.085678e24 / UnitLength_in_cm);
   y1 = astart/a_eq;
   y2 = aend/a_eq;
   d1 = (log(k/kscale) - log((sqrt(1+y1)+1)/(sqrt(1+y1)-1)))*(y1+2.0/3.0)+2.0*sqrt(1+y1);

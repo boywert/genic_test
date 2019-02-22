@@ -93,9 +93,9 @@ void displacement_fields(void)
     Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
 		  (1 - Omega - OmegaLambda - OmegaRadiation) / pow(InitTime, 2) + OmegaLambda);
 
-  vel_prefac = InitTime * hubble_a * F_Omega(InitTime);
+  vel_prefac = DEBA18_prefac(0.0, InitTime);
 
-  vel_prefac /= sqrt(InitTime);	/* converts to Gadget velocity */
+  
 
   if(ThisTask == 0)
     printf("vel_prefac= %g  hubble_a=%g fom=%g \n", vel_prefac, hubble_a, F_Omega(InitTime));
@@ -505,6 +505,8 @@ void set_units(void)		/* ... set some units */
 
   G = GRAVITY / pow(UnitLength_in_cm, 3) * UnitMass_in_g * pow(UnitTime_in_s, 2);
   Hubble = HUBBLE * UnitTime_in_s;
+
+  printf("Hubble = %g\n", Hubble);
 }
 
 

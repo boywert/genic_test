@@ -218,7 +218,7 @@ void displacement_fields(void)
 
 		      p_of_k *= -log(ampl);
 
-		      delta = fac * sqrt(p_of_k) * DplusDEBA18(k, InitTime, InputTime);	/* scale back to starting redshift */
+		      delta = fac * sqrt(p_of_k) * DplusDEBA18(kmag, InitTime, InputTime);	/* scale back to starting redshift */
 
 #ifdef CORRECT_CIC
 		      /* do deconvolution of CIC interpolation */
@@ -254,9 +254,9 @@ void displacement_fields(void)
 				kvec[axes] / kmag2 * delta * cos(phase);
 			      
 			      Cdata2[((i - Local_x_start) * Nmesh + j) * (Nmesh / 2 + 1) + k].re =
-				-kvec[axes] / kmag2 * delta * sin(phase);
+				-kvec[axes] / kmag2 * delta * sin(phase) * DEBA18_prefac(kmag, InitTime);
 			      Cdata2[((i - Local_x_start) * Nmesh + j) * (Nmesh / 2 + 1) + k].im =
-				kvec[axes] / kmag2 * delta * cos(phase);
+				kvec[axes] / kmag2 * delta * cos(phase) * DEBA18_prefac(kmag, InitTime);
 			    }
 			}
 		      else	/* k=0 plane needs special treatment */
@@ -283,14 +283,14 @@ void displacement_fields(void)
 
 
 				      Cdata2[((i - Local_x_start) * Nmesh + j) * (Nmesh / 2 + 1) + k].re =
-					-kvec[axes] / kmag2 * delta * sin(phase);
+					-kvec[axes] / kmag2 * delta * sin(phase) * DEBA18_prefac(kmag, InitTime);
 				      Cdata2[((i - Local_x_start) * Nmesh + j) * (Nmesh / 2 + 1) + k].im =
-					kvec[axes] / kmag2 * delta * cos(phase);
+					kvec[axes] / kmag2 * delta * cos(phase) * DEBA18_prefac(kmag, InitTime);
 
 				      Cdata2[((i - Local_x_start) * Nmesh + jj) * (Nmesh / 2 + 1) + k].re =
-					-kvec[axes] / kmag2 * delta * sin(phase);
+					-kvec[axes] / kmag2 * delta * sin(phase) * DEBA18_prefac(kmag, InitTime);
 				      Cdata2[((i - Local_x_start) * Nmesh + jj) * (Nmesh / 2 + 1) + k].im =
-					-kvec[axes] / kmag2 * delta * cos(phase);
+					-kvec[axes] / kmag2 * delta * cos(phase) * DEBA18_prefac(kmag, InitTime);
 				    }
 				}
 			    }
@@ -315,9 +315,9 @@ void displacement_fields(void)
 					kvec[axes] / kmag2 * delta * cos(phase);
 
 				      Cdata2[((i - Local_x_start) * Nmesh + j) * (Nmesh / 2 + 1) + k].re =
-					-kvec[axes] / kmag2 * delta * sin(phase);
+					-kvec[axes] / kmag2 * delta * sin(phase) * DEBA18_prefac(kmag, InitTime);
 				      Cdata2[((i - Local_x_start) * Nmesh + j) * (Nmesh / 2 + 1) + k].im =
-					kvec[axes] / kmag2 * delta * cos(phase);
+					kvec[axes] / kmag2 * delta * cos(phase) * DEBA18_prefac(kmag, InitTime);
 				    }
 
 				  if(ii >= Local_x_start && ii < (Local_x_start + Local_nx))
@@ -328,9 +328,9 @@ void displacement_fields(void)
 					    k].im = -kvec[axes] / kmag2 * delta * cos(phase);
 				      
 				      Cdata2[((ii - Local_x_start) * Nmesh + jj) * (Nmesh / 2 + 1) +
-					    k].re = -kvec[axes] / kmag2 * delta * sin(phase);
+					     k].re = -kvec[axes] / kmag2 * delta * sin(phase) * DEBA18_prefac(kmag, InitTime);
 				      Cdata2[((ii - Local_x_start) * Nmesh + jj) * (Nmesh / 2 + 1) +
-					    k].im = -kvec[axes] / kmag2 * delta * cos(phase);
+					    k].im = -kvec[axes] / kmag2 * delta * cos(phase) * DEBA18_prefac(kmag, InitTime);
 				    }
 				}
 			    }
@@ -342,7 +342,7 @@ void displacement_fields(void)
 
 
       rfftwnd_mpi(Inverse_plan, 1, Disp, Workspace, FFTW_NORMAL_ORDER);		/** FFT **/
-
+      rfftwnd_mpi(Inverse_plan2, 1, Velq, Workspace2, FFTW_NORMAL_ORDER);		/** FFT **/
       /* now get the plane on the right side from neighbour on the right, 
          and send the left plane */
 
@@ -445,10 +445,17 @@ void displacement_fields(void)
 	      Disp[(ii * Nmesh + j) * (2 * (Nmesh / 2 + 1)) + kk] * f6 +
 	      Disp[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f7 +
 	      Disp[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
+	    vel = Velq[(i * Nmesh + j) * (2 * (Nmesh / 2 + 1)) + k] * f1 +
+	      Velq[(i * Nmesh + j) * (2 * (Nmesh / 2 + 1)) + kk] * f2 +
+	      Velq[(i * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f3 +
+	      Velq[(i * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f4 +
+	      Velq[(ii * Nmesh + j) * (2 * (Nmesh / 2 + 1)) + k] * f5 +
+	      Velq[(ii * Nmesh + j) * (2 * (Nmesh / 2 + 1)) + kk] * f6 +
+	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f7 +
+	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
 
-	    P[n].Vel[axes] = dis;
-	    P[n].Pos[axes] += P[n].Vel[axes];
-	    P[n].Vel[axes] *= vel_prefac;
+	    P[n].Vel[axes] = vel;	    
+	    P[n].Pos[axes] += dis;
 	    P[n].Pos[axes] = periodic_wrap(P[n].Pos[axes]);
 	    
 	    if(dis > maxdisp)
@@ -576,8 +583,11 @@ void free_ffts(void)
 {
   free(Workspace);
   free(Disp);
+  free(Workspace2);
+  free(Velq);
   free(Slab_to_task);
   rfftwnd_mpi_destroy_plan(Inverse_plan);
+  rfftwnd_mpi_destroy_plan(Inverse_plan2);
 }
 
 

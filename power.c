@@ -132,6 +132,8 @@ void initialize_powerspectrum(void)
   double res;
 
   InitTime = 1 / (1 + Redshift);
+  OmegaRadiation = Omega/(1 + Z_eq);
+  OmegaLambda = 1.0 - Omega - OmegaRadiation - 1e-30;
 
   AA = 6.4 / ShapeGamma * (3.085678e24 / UnitLength_in_cm);
   BB = 3.0 / ShapeGamma * (3.085678e24 / UnitLength_in_cm);
@@ -322,6 +324,21 @@ double growth(double a)
   return hubble_a * result;
 }
 
+double DEBA18_prefac(double k, double a) {
+  double y;
+  double a;
+  double hubble_a;
+  double kscale = 0.12;
+  double ddot, d;
+  double a_eq = 1.0/(1+Z_eq);
+  hubble_a =
+    Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
+		  (1 - Omega - OmegaLambda - OmegaRadiation) / pow(InitTime, 2) + OmegaLambda);
+  y = a/a_eq;
+  ddot = log(k/kscale) - log((sqrt(1+y) + 1)/(sqrt(1+y) - 1)) + (6*y + 2)/(3*y*sqrt(1+y));
+  d = (log(k/kscale) - log(( sqrt(1 + y) + 1 )/( sqrt(1 + y) - 1)))*(y + 2.0/3.0) + 2.0*sqrt(1 + y);
+  return y * hubble_a * ddot / d;
+}
 double DplusDEBA18(double k, double astart, double aend) {
   double y1, y2;
   double d1, d2;

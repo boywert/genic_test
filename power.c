@@ -326,7 +326,6 @@ double growth(double a)
 
 double DEBA18_prefac(double k, double a) {
   double y;
-  double a;
   double hubble_a;
   double kscale = 0.12;
   double ddot, d;

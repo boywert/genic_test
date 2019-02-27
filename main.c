@@ -98,7 +98,8 @@ void displacement_fields(void)
   
 
   if(ThisTask == 0)
-    printf("vel_prefac= %g  Hubble = %g hubble_a=%g fom=%g \n", vel_prefac, Hubble, hubble_a, F_Omega(InitTime));
+    printf("vel_prefac= %g  Hubble = %g hubble_a=%g fom=%g \n", vel_prefac, Hubble, hubble_a, F_Omega
+	   (InitTime));
 
   fac = pow(2 * PI / Box, 1.5);
 
@@ -218,7 +219,7 @@ void displacement_fields(void)
 
 		      p_of_k *= -log(ampl);
 
-		      delta = fac * sqrt(p_of_k) * DplusDEBA18(kmag, InitTime, InputTime);	/* scale back to starting redshift */
+		      delta = fac * sqrt(p_of_k) / Dplus;	/* scale back to starting redshift */
 
 #ifdef CORRECT_CIC
 		      /* do deconvolution of CIC interpolation */
@@ -454,7 +455,7 @@ void displacement_fields(void)
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f7 +
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
 
-	    P[n].Vel[axes] = vel;	    
+	    P[n].Vel[axes] = vel/sqrt(InitTime);	    
 	    P[n].Pos[axes] += dis;
 	    P[n].Pos[axes] = periodic_wrap(P[n].Pos[axes]);
 	    

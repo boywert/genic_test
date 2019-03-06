@@ -455,7 +455,7 @@ void displacement_fields(void)
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f7 +
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
 
-	    P[n].Vel[axes] = vel/sqrt(InitTime);	    
+	    P[n].Vel[axes] = vel;	    
 	    P[n].Pos[axes] += dis;
 	    P[n].Pos[axes] = periodic_wrap(P[n].Pos[axes]);
 	    

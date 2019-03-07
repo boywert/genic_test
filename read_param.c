@@ -40,10 +40,6 @@ void read_parameterfile(char *fname)
   addr[nt] = &Z_eq;
   id[nt++] = FLOAT;  
 
-  strcpy(tag[nt], "InputTime");
-  addr[nt] = &InputTime;
-  id[nt++] = FLOAT;
-
   strcpy(tag[nt], "HubbleParam");
   addr[nt] = &HubbleParam;
   id[nt++] = FLOAT;

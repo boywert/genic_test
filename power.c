@@ -330,7 +330,8 @@ double DEBA18_prefac(double k, double a) {
   double kscale = 0.12;
   double ddot, d;
   double a_eq = 1.0/(1+Z_eq);
-  k *= (3.085678e24 / UnitLength_in_cm); //change to h/Mpci
+
+  k *= (3.085678e24 / UnitLength_in_cm); //change to h/Mpc
   printf("Hubble = %g\n",Hubble);
   hubble_a =
     HubbleParam * Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +

@@ -330,7 +330,7 @@ double DEBA18_prefac(double k, double a) {
   double kscale = 0.12;
   double ddot, d;
   double a_eq = 1.0/(1+Z_eq);
-
+  double res;
   k *= (3.085678e24 / UnitLength_in_cm); //change to h/Mpc
   hubble_a =
     HubbleParam * Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
@@ -338,7 +338,9 @@ double DEBA18_prefac(double k, double a) {
   y = a/a_eq;
   ddot = log(k/kscale) - log((sqrt(1+y) + 1)/(sqrt(1+y) - 1)) + 2./sqrt(1.+y) + 2./(3.*y*sqrt(1 + y));
   d = (log(k/kscale) - log(( sqrt(1 + y) + 1 )/( sqrt(1 + y) - 1)))*(y + 2.0/3.0) + 2.0*sqrt(1 + y);
-  return a * y * hubble_a * ddot / d / sqrt(InitTime);
+  res = a * y * hubble_a * ddot / d / sqrt(InitTime);
+  //printf("res = %g\n", res);
+  return res;
 }
 double DplusDEBA18(double k, double astart, double aend) {
   double y1, y2;

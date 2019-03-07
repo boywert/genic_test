@@ -73,7 +73,7 @@ void displacement_fields(void)
   int sendTask, recvTask;
   double fac, vel_prefac;
   double kvec[3], kmag, kmag2, p_of_k;
-  double delta, phase, ampl, hubble_a;
+  double delta, phase, ampl;
   double u, v, w;
   double f1, f2, f3, f4, f5, f6, f7, f8;
   double dis, vel, maxdisp, max_disp_glob;
@@ -89,17 +89,12 @@ void displacement_fields(void)
       fflush(stdout);
     }
 
-  hubble_a =
-    Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
-		  (1 - Omega - OmegaLambda - OmegaRadiation) / pow(InitTime, 2) + OmegaLambda);
-
-  vel_prefac = DEBA18_prefac(1.0, InitTime);
+  vel_prefac = DEBA18_prefac(2*PI/Box, InitTime);
 
   
 
   if(ThisTask == 0)
-    printf("vel_prefac= %g  Hubble = %g hubble_a=%g fom=%g \n", vel_prefac, Hubble, hubble_a, F_Omega
-	   (InitTime));
+    printf(" k= %g h/kpc, vel_prefac= %g, Hubble = %g \n",2*PI/Box, vel_prefac, Hubble);
 
   fac = pow(2 * PI / Box, 1.5);
 

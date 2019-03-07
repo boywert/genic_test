@@ -338,7 +338,7 @@ double DEBA18_prefac(double k, double a) {
   y = a/a_eq;
   ddot = log(k/kscale) - log((sqrt(1+y) + 1)/(sqrt(1+y) - 1)) + 2./sqrt(1.+y) + 2./(3.*y*sqrt(1 + y));
   d = (log(k/kscale) - log(( sqrt(1 + y) + 1 )/( sqrt(1 + y) - 1)))*(y + 2.0/3.0) + 2.0*sqrt(1 + y);
-  res = a * y * hubble_a * ddot / d / sqrt(InitTime);
+  res = y * hubble_a * ddot / d / sqrt(InitTime);
   printf("res = %g\n", res);
   return res;
 }

@@ -407,7 +407,7 @@ void displacement_fields(void)
 	      i = Local_x_start;
 	    if((Local_x_start == 0) && (Local_nx < Nmesh))
 	      if(i >= Nmesh -1) {
-		printf("Particle:%d, x = %g, i = %d change to i = 0\n",n,P[n].Pos[0],i);
+		printf("Particle:%d, x = %g, y = %g, z = %g, i = %d change to i = 0\n",n,P[n].Pos[0],P[n].Pos[1],P[n].Pos[2],i);
 		i = 0;
 	      }
 	    if(j == Nmesh)

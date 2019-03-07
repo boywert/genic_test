@@ -407,7 +407,7 @@ void displacement_fields(void)
 	      i = Local_x_start;
 	    if((Local_x_start == 0) && (Local_nx < Nmesh))
 	      if(i >= Nmesh -1)
-		i == 0;
+		i = 0;
 	    if(j == Nmesh)
 	      j = Nmesh - 1;
 	    if(k == Nmesh)

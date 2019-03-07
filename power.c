@@ -339,7 +339,7 @@ double DEBA18_prefac(double k, double a) {
   ddot = log(k/kscale) - log((sqrt(1+y) + 1)/(sqrt(1+y) - 1)) + 2./sqrt(1.+y) + 2./(3.*y*sqrt(1 + y));
   d = (log(k/kscale) - log(( sqrt(1 + y) + 1 )/( sqrt(1 + y) - 1)))*(y + 2.0/3.0) + 2.0*sqrt(1 + y);
   res = y * hubble_a * ddot / d * sqrt(a);
-  printf("ddot = %g, d = %g, res = %g\n", ddot, d, res);
+  printf("k = %g h/Mpc, ddot = %g, d = %g, res = %g\n",k, ddot, d, res);
   return res;
 }
 double DplusDEBA18(double k, double astart, double aend) {

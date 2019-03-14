@@ -460,8 +460,8 @@ void displacement_fields(void)
             printf("Line %d n = %d axes = %d vel = %g dis = %g\n",__LINE__,n,axes,vel,dis);
 	    P[n].Vel[axes] = vel;
 	    printf("Line %d n = %d axes = %d vel = %g dis = %g\n",__LINE__,n,axes,vel,dis);
-	    P[n].Disp[axes] = dis;
-             printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
+	    P[n].Vel[axes] = dis;
+	    printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
 	    
 	    if(dis > maxdisp)
 	      maxdisp = dis;

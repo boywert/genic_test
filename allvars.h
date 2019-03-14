@@ -83,7 +83,7 @@ extern struct part_data
 {
   float Pos[3];
   float Vel[3];
-  float Disp[3];
+  double Disp[3];
   long long ID;
 } *P;
 

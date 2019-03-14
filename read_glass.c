@@ -173,7 +173,7 @@ void read_glass(char *fname)
 
       fflush(stdout);
     }
-
+  exit(0);
 
   free(npart_Task);
 

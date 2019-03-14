@@ -393,11 +393,11 @@ void displacement_fields(void)
       for(n = 0; n < NumPart; n++)
 	{
 	  {
-            printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
+
 	    u = P[n].Pos[0] / Box * Nmesh;
 	    v = P[n].Pos[1] / Box * Nmesh;
 	    w = P[n].Pos[2] / Box * Nmesh;
-	    printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
+
 	    i = (int) u;
 	    j = (int) v;
 	    k = (int) w;
@@ -457,15 +457,15 @@ void displacement_fields(void)
 	      Velq[(ii * Nmesh + j) * (2 * (Nmesh / 2 + 1)) + kk] * f6 +
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f7 +
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
-            printf("Line %d n = %d axes = %d vel = %g dis = %g\n",__LINE__,n,axes,vel,dis);
+            
 	    P[n].Vel[axes] = vel;
-	    printf("Line %d n = %d axes = %d vel = %g dis = %g\n",__LINE__,n,axes,vel,dis);
+	    
 	    P[n].Disp[axes] = dis;
-	    printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
+	    
 	    
 	    if(dis > maxdisp)
 	      maxdisp = dis;
-	    printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
+	    
 	  }
 	}
     }

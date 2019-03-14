@@ -389,7 +389,7 @@ void displacement_fields(void)
 	}
 
       /* read-out displacements */
-
+      printf("Line %d\n",__LINE__);
       for(n = 0; n < NumPart; n++)
 	{
 	  {

@@ -389,11 +389,11 @@ void displacement_fields(void)
 	}
 
       /* read-out displacements */
-
+      printf("Line %d\n",__LINE__);
       for(n = 0; n < NumPart; n++)
 	{
 	  {
-
+            printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
 	    u = P[n].Pos[0] / Box * Nmesh;
 	    v = P[n].Pos[1] / Box * Nmesh;
 	    w = P[n].Pos[2] / Box * Nmesh;

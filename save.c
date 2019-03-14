@@ -246,6 +246,7 @@ void save_local_data(void)
     {
 #ifdef NO64BITID
       blockid[pc] = P[i].ID;
+      printf("blockid[%d] = %d\n",pc,blockid[pc]);
 #else
       blocklongid[pc] = P[i].ID;
 #endif

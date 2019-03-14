@@ -223,7 +223,7 @@ void read_glass(char *fname)
 		      P[count].Type = type - 1;
 #endif
 		      P[count].ID = IDStart;
-
+		      printf("ID = %d\n",  P[count].ID);
 		      count++;
 		    }
 

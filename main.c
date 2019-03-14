@@ -397,7 +397,7 @@ void displacement_fields(void)
 	    u = P[n].Pos[0] / Box * Nmesh;
 	    v = P[n].Pos[1] / Box * Nmesh;
 	    w = P[n].Pos[2] / Box * Nmesh;
-    
+	    printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
 	    i = (int) u;
 	    j = (int) v;
 	    k = (int) w;

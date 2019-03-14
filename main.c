@@ -389,15 +389,15 @@ void displacement_fields(void)
 	}
 
       /* read-out displacements */
-      printf("Line %d\n",__LINE__);
+
       for(n = 0; n < NumPart; n++)
 	{
 	  {
-	          printf("Line %d\n",__LINE__);
+
 	    u = P[n].Pos[0] / Box * Nmesh;
 	    v = P[n].Pos[1] / Box * Nmesh;
 	    w = P[n].Pos[2] / Box * Nmesh;
-      printf("Line %d\n",__LINE__);
+    
 	    i = (int) u;
 	    j = (int) v;
 	    k = (int) w;
@@ -409,7 +409,9 @@ void displacement_fields(void)
 	    if((Local_x_start == 0) && (Local_nx < Nmesh))
 	      if(i >= Nmesh -1) {
 		printf("Particle:%d, x = %g, y = %g, z = %g, i = %d change to i = 0\n",n,P[n].Pos[0],P[n].Pos[1],P[n].Pos[2],i);
-		i = 0;
+		printf("Unexpected!!!!!\nExiting\n");
+		exit(1);
+		//i = 0;
 	      }
 	    if(j == Nmesh)
 	      j = Nmesh - 1;
@@ -455,10 +457,10 @@ void displacement_fields(void)
 	      Velq[(ii * Nmesh + j) * (2 * (Nmesh / 2 + 1)) + kk] * f6 +
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f7 +
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
-                  printf("Line %d\n",__LINE__);
+            printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
 	    P[n].Vel[axes] = vel;	    
 	    P[n].Disp[axes] = dis;
-	       printf("Line %d\n",__LINE__);
+
 	    
 	    if(dis > maxdisp)
 	      maxdisp = dis;

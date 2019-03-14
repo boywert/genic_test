@@ -456,8 +456,8 @@ void displacement_fields(void)
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
 
 	    P[n].Vel[axes] = vel;	    
-	    P[n].Pos[axes] += dis;
-	    P[n].Pos[axes] = periodic_wrap(P[n].Pos[axes]);
+	    P[n].Disp[axes] = dis;
+	 
 	    
 	    if(dis > maxdisp)
 	      maxdisp = dis;
@@ -467,15 +467,14 @@ void displacement_fields(void)
 
 
   /* now add displacement to Lagrangian coordinates, and multiply velocities by correct factor */
-  /* for(n = 0; n < NumPart; n++) */
-  /*   { */
-  /*     for(axes = 0; axes < 3; axes++) */
-  /* 	{ */
-  /* 	  P[n].Pos[axes] += P[n].Vel[axes]; */
-  /* 	  P[n].Vel[axes] *= vel_prefac; */
-  /* 	  P[n].Pos[axes] = periodic_wrap(P[n].Pos[axes]); */
-  /* 	} */
-  /*   } */
+  for(n = 0; n < NumPart; n++)
+    {
+      for(axes = 0; axes < 3; axes++)
+  	{
+  	  P[n].Pos[axes] += P[n].Disp[axes];
+  	  P[n].Pos[axes] = periodic_wrap(P[n].Pos[axes]);
+  	}
+    }
 
   gsl_rng_free(random_generator);
 

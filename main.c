@@ -458,9 +458,9 @@ void displacement_fields(void)
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + k] * f7 +
 	      Velq[(ii * Nmesh + jj) * (2 * (Nmesh / 2 + 1)) + kk] * f8;
             printf("Line %d n = %d axes = %d vel = %g dis = %g\n",__LINE__,n,axes,vel,dis);
-	    P[n].Vel[axes] = vel;
+	    //P[n].Vel[axes] = vel;
 	    printf("Line %d n = %d axes = %d vel = %g dis = %g\n",__LINE__,n,axes,vel,dis);
-	    P[n].Vel[axes] = dis;
+	    //P[n].Disp[axes] = dis;
 	    printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
 	    
 	    if(dis > maxdisp)

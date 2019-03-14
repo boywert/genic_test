@@ -464,6 +464,7 @@ void displacement_fields(void)
 	    
 	    if(dis > maxdisp)
 	      maxdisp = dis;
+	    printf("Line %d n = %d axes = %d\n",__LINE__,n,axes);
 	  }
 	}
     }

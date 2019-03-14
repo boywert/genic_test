@@ -217,6 +217,8 @@ void read_glass(char *fname)
 		      P[count].Pos[0] = x;
 		      P[count].Pos[1] = y;
 		      P[count].Pos[2] = z;
+		      P[count].Vel[0] = P[count].Vel[1] = P[count].Vel[2] = 0.0;
+		      P[count].Disp[0] = P[count].Disp[1] = P[count].Disp[2] = 0.0;
 #ifdef  MULTICOMPONENTGLASSFILE
 		      P[count].Type = type - 1;
 #endif

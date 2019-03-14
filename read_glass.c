@@ -173,7 +173,6 @@ void read_glass(char *fname)
 
       fflush(stdout);
     }
-  exit(0);
 
   free(npart_Task);
 
@@ -181,7 +180,7 @@ void read_glass(char *fname)
   if(NumPart)
     {
       P = (struct part_data *) malloc(bytes = sizeof(struct part_data) * NumPart);
-
+      printf("Numpart = %d, Memory = %d\n", Numpart, (int)bytes);
       if(!(P))
 	{
 	  printf("failed to allocate %g Mbyte (%d particles) on Task %d\n", bytes / (1024.0 * 1024.0),

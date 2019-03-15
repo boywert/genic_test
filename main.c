@@ -78,7 +78,7 @@ void displacement_fields(void)
   double f1, f2, f3, f4, f5, f6, f7, f8;
   double dis, vel, maxdisp, max_disp_glob;
   unsigned int *seedtable;
-  double a = InitTime, hubble_a,vel_prefac;
+  double a = InitTime, hubble_a;
 #ifdef CORRECT_CIC
   double fx, fy, fz, ff, smth;
 #endif

@@ -333,7 +333,7 @@ double DEBA18_prefac(double k, double a) {
   double res;
   k *= (3.085678e24 / UnitLength_in_cm); //change to h/Mpc
   hubble_a =
-    HubbleParam * Hubble * sqrt(Omega / pow(a, 3) + OmegaRadiation/ pow(a, 4) +
+    Hubble * sqrt(Omega / pow(a, 3) + OmegaRadiation/ pow(a, 4) +
 		  (1 - Omega - OmegaLambda ) / pow(a, 2) + OmegaLambda);
   y = a/a_eq;
   

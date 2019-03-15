@@ -78,7 +78,7 @@ void displacement_fields(void)
   double f1, f2, f3, f4, f5, f6, f7, f8;
   double dis, vel, maxdisp, max_disp_glob;
   unsigned int *seedtable;
-  double a = InitTime, hubble_a;
+  double  hubble_a;
 #ifdef CORRECT_CIC
   double fx, fy, fz, ff, smth;
 #endif
@@ -92,8 +92,8 @@ void displacement_fields(void)
   vel_prefac = DEBA18_prefac(2*PI/Box, InitTime);
 
   hubble_a =
-    HubbleParam * Hubble * sqrt(Omega / pow(a, 3) + //OmegaRadiation/ pow(a, 4) +
-		  (1 - Omega - OmegaLambda ) / pow(a, 2) + OmegaLambda);  
+    HubbleParam * Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
+		  (1 - Omega - OmegaLambda ) / pow(InitTime, 2) + OmegaLambda);  
 
   if(ThisTask == 0)
     printf("vel_prefac= %g  hubble_a=%g fom=%g \n", vel_prefac, hubble_a, vel_prefac/hubble_a/InitTime/sqrt(InitTime));

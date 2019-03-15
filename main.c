@@ -92,12 +92,13 @@ void displacement_fields(void)
   vel_prefac = DEBA18_prefac(2*PI/Box, InitTime);
 
   hubble_a =
-    HubbleParam * Hubble * sqrt(Omega / pow(a, 3) + OmegaRadiation/ pow(a, 4) +
+    HubbleParam * Hubble * sqrt(Omega / pow(a, 3) + //OmegaRadiation/ pow(a, 4) +
 		  (1 - Omega - OmegaLambda ) / pow(a, 2) + OmegaLambda);  
 
   if(ThisTask == 0)
     printf("vel_prefac= %g  hubble_a=%g fom=%g \n", vel_prefac, hubble_a, vel_prefac/hubble_a/InitTime/sqrt(InitTime));
   exit(0);
+  
   fac = pow(2 * PI / Box, 1.5);
   
   maxdisp = 0;

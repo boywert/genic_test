@@ -97,7 +97,7 @@ void displacement_fields(void)
   
   if(ThisTask == 0)
     printf("InitTime = %g vel_prefac= %g  hubble_a=%g fom=%g \n", InitTime, vel_prefac, hubble_a, vel_prefac/hubble_a/InitTime*sqrt(InitTime));
-  exit(0);
+
   
   fac = pow(2 * PI / Box, 1.5);
   
@@ -513,8 +513,6 @@ void set_units(void)		/* ... set some units */
 
   G = GRAVITY / pow(UnitLength_in_cm, 3) * UnitMass_in_g * pow(UnitTime_in_s, 2);
   Hubble = HUBBLE * UnitTime_in_s;
-
-  printf("Hubble = %g\n", Hubble);
 }
 
 

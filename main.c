@@ -94,7 +94,7 @@ void displacement_fields(void)
   hubble_a =
     Hubble * sqrt(Omega / pow(InitTime, 3) + OmegaRadiation/ pow(InitTime, 4) +
 		  (1 - Omega - OmegaLambda ) / pow(InitTime, 2) + OmegaLambda);  
-
+  
   if(ThisTask == 0)
     printf("InitTime = %g vel_prefac= %g  hubble_a=%g fom=%g \n", InitTime, vel_prefac, hubble_a, vel_prefac/hubble_a/InitTime/sqrt(InitTime));
   exit(0);

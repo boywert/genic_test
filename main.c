@@ -97,9 +97,9 @@ void displacement_fields(void)
 
   if(ThisTask == 0)
     printf("vel_prefac= %g  hubble_a=%g fom=%g \n", vel_prefac, hubble_a, vel_prefac/hubble_a/InitTime);
-  
+  exit(0);
   fac = pow(2 * PI / Box, 1.5);
-
+  
   maxdisp = 0;
 
   random_generator = gsl_rng_alloc(gsl_rng_ranlxd1);

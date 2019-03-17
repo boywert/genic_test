@@ -132,7 +132,7 @@ void initialize_powerspectrum(void)
   double res;
 
   InitTime = 1 / (1 + Redshift);
-  OmegaRadiation = Omega/(1 + Z_eq);
+  OmegaRadiation = Omega/(2 + Z_eq);
   OmegaLambda = 1.0 - Omega - OmegaRadiation - 1e-30;
 
   AA = 6.4 / ShapeGamma * (3.085678e24 / UnitLength_in_cm);
@@ -327,7 +327,7 @@ double growth(double a)
 inline double DEBA18_prefac(double k, double a) {
   double y;
   double hubble_a;
-  double kscale = 0.12;
+  // double kscale = 0.12; Sten Delos et al 2018 - not used anymore - Boyd
   double ddot, d;
   double a_eq = 1.0/(1+Z_eq);
   double res;

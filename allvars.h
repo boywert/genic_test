@@ -119,7 +119,7 @@ extern double PrimordialIndex;
 extern double ShapeGamma;
 
 extern double Dplus; /* growth factor */
-extern inline double DplusDEBA18(double k, double astart, double aend);
-extern double DEBA18_prefac(double k, double a);
+extern double DplusDEBA18(double k, double astart, double aend);
+extern inline double DEBA18_prefac(double k, double a);
 
 extern int    ReNormalizeInputSpectrum;

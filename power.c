@@ -324,7 +324,7 @@ double growth(double a)
   return hubble_a * result;
 }
 
-double DEBA18_prefac(double k, double a) {
+inline double DEBA18_prefac(double k, double a) {
   double y;
   double hubble_a;
   double kscale = 0.12;

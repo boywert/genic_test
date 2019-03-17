@@ -118,7 +118,8 @@ extern double OmegaBaryon, HubbleParam, Z_eq;
 extern double PrimordialIndex;
 extern double ShapeGamma;
 
-extern double Dplus, DplusDEBA18(double k, double astart, double aend); /* growth factor */
+extern double Dplus; /* growth factor */
+extern inline double DplusDEBA18(double k, double astart, double aend);
 extern double DEBA18_prefac(double k, double a);
 
 extern int    ReNormalizeInputSpectrum;

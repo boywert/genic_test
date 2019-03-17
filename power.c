@@ -324,7 +324,7 @@ double growth(double a)
   return hubble_a * result;
 }
 
-inline double DEBA18_prefac(double k, double a) {
+double DEBA18_prefac(double k, double a) {
   double y;
   double hubble_a;
   // double kscale = 0.12; Sten Delos et al 2018 - not used anymore - Boyd

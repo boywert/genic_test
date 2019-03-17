@@ -331,15 +331,25 @@ double DEBA18_prefac(double k, double a) {
   double ddot, d;
   double a_eq = 1.0/(1+Z_eq);
   double res;
-  k *= (3.085678e24 / UnitLength_in_cm); //change to h/Mpc
+  double T_cmb = 2.7255; // Fixsen 2009
+  double N_eff = 3.046; // Mangano et al (2002,2005)
+  double T_ref = 2.7;
+  double Theta = T_cmb/T_ref;
+  double f_v = 1.0 - 1.0/(N_eff*(7./8.)*pow(4./11.,4./3.) + 1.0);
+  double I_2 = 0.594*(1 - 0.631*f_v + 0.284*f_v*f_v); // eq B14 Hu & Sukiyama 1996
+  double k_eq  = 9.67e-2 * Omega * HubbleParam * HubbleParam * sqrt(1.0 - f_v) / (Theta*Theta); // 1/Mpc
+  double logk_term, aHaEQ;
+  k *= (3.085678e24 / UnitLength_in_cm) * HubbleParam; //change to 1/Mpc
   hubble_a =
     Hubble * sqrt(Omega / pow(a, 3) + OmegaRadiation/ pow(a, 4) +
 		  (1 - Omega - OmegaLambda ) / pow(a, 2) + OmegaLambda);
   y = a/a_eq;
   
-  ddot = log(k/kscale) - log((sqrt(1+y) + 1)/(sqrt(1+y) - 1)) + 2./sqrt(1.+y) + 2./(3.*y*sqrt(1 + y));
-
-  d = (log(k/kscale) - log(( sqrt(1 + y) + 1 )/( sqrt(1 + y) - 1)))*(y + 2.0/3.0) + 2.0*sqrt(1 + y);
+  aHaEQ = (1.0 + sqrt(1.0 + 8.0*(k/k_eq)*(k/k_eq)))/(4.0 * (k/k_eq)*(k/k_eq)); //eq B13 Hu & Sukiyama 1996
+  logk_term = log(4.0 * I_2 * exp(-3.0) / aHaEQ);
+  d = (logk_term - log(( sqrt(1 + y) + 1 )/( sqrt(1 + y) - 1)))*(y + 2.0/3.0) + 2.0*sqrt(1 + y);  //eq D3 Hu & Sukiyama 1996
+  ddot = logk_term - log((sqrt(1+y) + 1)/(sqrt(1+y) - 1)) + 2./sqrt(1.+y) + 2./(3.*y*sqrt(1 + y));
+  
   res = y * hubble_a * ddot / d * sqrt(a);
   //printf("y = %g, k = %g h/Mpc, ddot = %g, d = %g, hubble_a = %g, res = %g\n", y, k, ddot, d, hubble_a, res);
   return res;

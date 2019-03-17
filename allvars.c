@@ -69,5 +69,4 @@ double PrimordialIndex;
 double Dplus;			/* growth factor */
 
 
-
 int ReNormalizeInputSpectrum;

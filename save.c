@@ -329,7 +329,25 @@ void save_local_data(void)
     my_fwrite(block, sizeof(float), pc, fd);
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
 #endif
+#ifdef MASSTAB
+  dummy = sizeof(float) * NumPart;
+  my_fwrite(&dummy, sizeof(dummy), 1, fd);
+  for(i = 0, pc = 0; i < NumPart; i++)
+    {
+      block[pc] = header.mass[1];
 
+      pc++;
+
+      if(pc == blockmaxlen)
+        {
+          my_fwrite(block, sizeof(float), pc, fd);
+          pc = 0;
+        }
+    }
+  if(pc > 0)
+    my_fwrite(block, sizeof(float), pc, fd);
+  my_fwrite(&dummy, sizeof(dummy), 1, fd);
+#endif
   free(block);
 
   fclose(fd);

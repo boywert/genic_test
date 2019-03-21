@@ -637,7 +637,7 @@ void print_spec(void)
       fprintf(fd, "%12g %12g\n", Redshift, DDD);	/* print actual starting redshift and 
 							   linear growth factor for this cosmology */
 
-      kstart = 2 * PI / (1000.0 * (3.085678e24 / UnitLength_in_cm));	/* 1000 Mpc/h */
+      kstart = 2 * PI / (1000.0 * (3.085678e24 / UnitLength_in_cm));	/* 1000 M/pc/h */
       kend = 2 * PI / (0.001 * (3.085678e24 / UnitLength_in_cm));	/* 0.001 Mpc/h */
 
       for(k = kstart; k < kend; k *= 1.025)

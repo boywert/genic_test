@@ -1,9 +1,8 @@
-
-Nmesh            128       % This is the size of the FFT grid used to 
+Nmesh            256       % This is the size of the FFT grid used to 
                            % compute the displacement field. One
                            % should have Nmesh >= Nsample.
 
-Nsample          128       % sets the maximum k that the code uses,
+Nsample          256       % sets the maximum k that the code uses,
                            % i.e. this effectively determines the
                            % Nyquist frequency that the code assumes,
                            % k_Nyquist = 2*PI/Box * Nsample/2
@@ -12,29 +11,31 @@ Nsample          128       % sets the maximum k that the code uses,
                            % total number of particles
  
 
-Box              150000.0  % Periodic box size of simulation
+Box              8  % Periodic box size of simulation
 
 FileBase         ics                 % Base-filename of output files
-OutputDir        ./ICs/              % Directory for output
+OutputDir        ICs_camb_256_8pc_eq              % Directory for output
 
 GlassFile        dummy_glass.dat  % File with unperturbed glass or
                                   % Cartesian grid
 
-TileFac          8                % Number of times the glass file is
+TileFac          16               % Number of times the glass file is
                                   % tiled in each dimension (must be
                                   % an integer)
+				  % The dummy_glass.dat file has 16 particles per dimension
+				  % so this should be Nsample/16
 
 
-Omega            0.3       % Total matter density  (at z=0)
-OmegaLambda      0.7       % Cosmological constant (at z=0)
+Omega            0.3089       % Total matter density  (at z=0)
+OmegaLambda      0.6911       % Cosmological constant (at z=0)
 OmegaBaryon      0.0       % Baryon density        (at z=0)
-HubbleParam      0.7       % Hubble paramater (may be used for power spec parameterization)
+HubbleParam      0.6766       % Hubble paramater (may be used for power spec parameterization)
 
-Redshift         63        % Starting redshift
+Redshift         100000.0        % Starting redshift
 
-Sigma8           0.9       % power spectrum normalization
+Sigma8           0.8       % power spectrum normalization
 
-
+Z_eq             3379.0	   % matter-radiation equality redshift
 
 SphereMode       1         % if "1" only modes with |k| < k_Nyquist are
                            % used (i.e. a sphere in k-space), otherwise modes with
@@ -42,40 +43,29 @@ SphereMode       1         % if "1" only modes with |k| < k_Nyquist are
                            % (i.e. a cube in k-space)
           
 
-WhichSpectrum    0         % "1" selects Eisenstein & Hu spectrum,
-		           % "2" selects a tabulated power spectrum in
-                           % the file 'FileWithInputSpectrum'
-                           % otherwise, Efstathiou parametrization is used
-
-
-FileWithInputSpectrum   input_spectrum.txt  % filename of tabulated input
+WhichSpectrum    2         % This needs to be 2 to get the data
+		 	   % from the table
+FileWithInputSpectrum   ps_z_100000_eq.dat  % filename of tabulated input
                                             % spectrum (if used)
 InputSpectrum_UnitLength_in_cm  3.085678e24 % defines length unit of tabulated
                                             % input spectrum in cm/h. 
                                             % Note: This can be chosen different from UnitLength_in_cm
 
-ReNormalizeInputSpectrum   1                % if set to zero, the
-                                            % tabulated spectrum is
-                                            % assumed to be normalized
-                                            % already in its amplitude to
-                                            % the starting redshift,
-                                            % otherwise this is recomputed
-                                            % based on the specified sigma8
-
+ReNormalizeInputSpectrum   0                % This needs to be 0
 
 ShapeGamma       0.21      % only needed for Efstathiou power spectrum 
-PrimordialIndex  1.0       % may be used to tilt the primordial index, 
+PrimordialIndex  0.96       % may be used to tilt the primordial index, 
                            % primordial spectrum is k^PrimordialIndex
 
 		  
 Seed             123456    %  seed for IC-generator
 
 
-NumFilesWrittenInParallel 2  % limits the number of files that are
+NumFilesWrittenInParallel 1  % limits the number of files that are
                              % written in parallel when outputting
 
 
-UnitLength_in_cm          3.085678e21   % defines length unit of output (in cm/h) 
+UnitLength_in_cm          3.085678e18   % defines length unit of output (in cm/h) 
 UnitMass_in_g             1.989e43      % defines mass unit of output (in g/cm)
 UnitVelocity_in_cm_per_s  1e5           % defines velocity unit of output (in cm/sec)
 

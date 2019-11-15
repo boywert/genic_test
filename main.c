@@ -496,6 +496,7 @@ void displacement_fields(void)
 }
 
 double periodic_wrap(double x)
+  
 {
   while(x >= Box)
     x -= Box;
